@@ -23,8 +23,19 @@ int test(int i) {
 int test_bit_vector()
 {
   set(10);
-  printf("result: %d", test(10));
-  // assert(test(10) == 1);
+  assert(test(10) > 0);
+  assert(test(9) == 0);
+  assert(test(11) == 0);
+  assert(test(1000) == 0);
+
+  set(1000);
+  assert(test(10) > 0);
+  assert(test(1000) > 0);
+  
+  clr(10);
+  clr(1000);
+  assert(test(10) == 0);
+  assert(test(1000) == 0);
 }
 
 int main(int argc, const char *argv[]) 
