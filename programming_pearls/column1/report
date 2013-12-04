@@ -1,0 +1,26 @@
+Command:
+  time -f "%e real\n%U user\n%S sys\n%K memory\n" 
+
+system_sort:
+  0:20.34 real
+  31.70 user
+  0.64 sys
+  0 memory
+
+qsort:
+  0:09.68 real
+  9.13 user
+  0.25 sys
+  0 memory
+
+set:
+  1:05.50 real
+  43.45 user
+  21.51 sys
+  0 memory
+
+bitmap:
+  0:05.73 real
+  5.54 user
+  0.17 sys
+  0 memory
