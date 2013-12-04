@@ -3,6 +3,7 @@
 #include <iostream>
 #include <set>
 #include <assert.h>
+#include <string.h>
 
 #define N 10000000
 
@@ -53,6 +54,18 @@ int test(int i) {
   return b[i>>SHIFT] & (1 << (i & MASK));
 }
 
+void bitmap_sort()
+{
+  int i;
+  for (i = 0; i < N; ++i)
+    clr(i);
+  while (scanf("%d", &i) != EOF)
+    set(i);
+  for (int i = 0; i < N; ++i)
+    if (test(i))
+      printf("%d\n", i);
+}
+
 int test_bit_vector()
 {
   set(10);
@@ -71,8 +84,22 @@ int test_bit_vector()
   assert(test(1000) == 0);
 }
 
+#define QSORT "--qsort"
+#define SET "--set"
+#define BITMAP "--bitmap"
 int main(int argc, const char *argv[]) 
 {
-  test_bit_vector();
+  // test_bit_vector();
+  if (argc <= 1) 
+    printf("Usage: [%s, %s, %s]\n", QSORT, SET, BITMAP);
+  const char* cmd = argv[1];
+  if (strcmp(cmd, QSORT) == 0)
+    qsort_sort();
+  else if (strcmp(cmd, SET) == 0)
+    set_sort();
+  else if (strcmp(cmd, BITMAP) == 0)
+    bitmap_sort();
+  else
+    printf("unrecognized option '%s'\n", cmd);
   return 0;
 }
