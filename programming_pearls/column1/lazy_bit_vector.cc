@@ -48,7 +48,7 @@ int test(int i) {
 int test_bit_vector()
 {
   // Since b is in data section, its elements will be initialized to 0. The 
-  // following code to scramble the contents of array b.
+  // following code is to scramble the contents of array b.
   for (int i = 0; i < SIZE; i++)
     b[i] = 0xFFFFFFFF;
 
