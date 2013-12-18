@@ -25,12 +25,12 @@ int is_leap(int year)
   return FALSE;
 }
 
-// int days_in_year()
-// {
-//   int cnt, i;
-//   for (i = 0, cnt = 0; i < 12; i++)
-//     cnt += months[i];
-// }
+int days_in_year(s)
+{
+  int cnt, i;
+  for (i = 0, cnt = 0; i < 12; i++)
+    cnt += months[i];
+}
 
 int days(struct date a, struct date b)
 {
@@ -50,7 +50,6 @@ void calendar(int year, int month)
   int i;
   printf("       %d\n"
          "      %s\n"
-         // "Su Mo Tu We Th Fr Sa", year, month_names[month - 1]);
          "====================", year, month_names[month - 1]);
   for (i = 0; i < months[is_leap(year)][month - 1]; i++) {
     if (i % 7 == 0) printf("\n");
