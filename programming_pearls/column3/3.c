@@ -13,6 +13,7 @@ void banner(char *s)
   while (s[i] != '\0') {
     row = s[i++] - '0';
     cnt = 0;
+    buf[0] = '\0';
     while (s[i] != '\n' && s[i] != '\0') {
       col = s[i++] - '0';
       c = s[i++];
@@ -28,7 +29,6 @@ void banner(char *s)
       i++;
     }
   }
-  printf("\n");
 }
 
 int main(int argc, const char *argv[]) 
