@@ -51,7 +51,7 @@ void wo_array(float c1, float c2, float c3, float c4, float c5, float c6,
         break;
       case 4:
         v = c1 * a4 + c2 * a3 + c3 * a2 + c4 * a1 + c5 * a5 + c6;
-        a4 = v;
+        a5 = v;
         break;
     };
     info(i + 1, v);
