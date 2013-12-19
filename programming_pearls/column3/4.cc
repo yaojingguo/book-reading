@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
+#include <algorithm>
+
+using namespace std;
 
 #define TRUE  1
 #define FALSE 0
@@ -38,14 +41,49 @@ int days_in_year(const Date& a)
   return cnt;
 }
 
+bool to_bool(int a)
+{
+  if (a <= 0)     return true;
+  else if (a > 0) return false;
+}
+
+// a <= b 
+bool is_before(const Date& a, const Date& b)
+{
+  int diff;
+
+  diff = a.year - b.year;
+  if (diff == 0) {
+    diff = a.month - b.month;
+    if (diff == 0) 
+      diff = a.day - b.day;
+  }
+  return to_bool(diff);
+}
+
 int days_between(const Date& a, const Date& b)
 {
-  int cnt = 0;
-  for (int y = a.year; y < b.year; y++)
+  Date start;
+  Date end;
+  int cnt, sign;
+
+  if (is_before(a, b)) {
+    start = a;
+    end = b;
+    sign = 1;
+  } else {
+    start = b;
+    end = a;
+    sign = -1;
+  }
+
+  cnt = 0;
+  for (int y = start.year; y < end.year; y++) 
     cnt += years[is_leap(y)];
-  cnt += days_in_year(b);
-  cnt -= days_in_year(a);
-  return cnt;
+
+  cnt += days_in_year(end);
+  cnt -= days_in_year(start);
+  return sign * cnt;
 }
 
 int weekday(const Date& a)
@@ -53,8 +91,10 @@ int weekday(const Date& a)
   int days = months[is_leap(a.year)][a.month - 1];
   const Date base = {2013, 12, 1};
   int base_days = days_in_year(base);
-  printf("base_days: %d\n", base_days);
   int diff = days_between(base, a);
+  diff %= 7;
+  if (diff < 0) diff += 7;
+  return diff;
 }
 
 void calendar(int year, int month)
@@ -80,12 +120,15 @@ void test_days()
   Date b1 = {2013, 12, 17};
   Date b2 = {2013, 12, 18};
   assert(days_between(b1, b2) == 1);
+  assert(days_between(b2, b1) == -1);
 }
 
 void test_weekday()
 {
-  Date today = {2013, 12, 19};
-  weekday(today);
+  Date a1 = {2013, 12, 19};
+  assert(weekday(a1) == 4);
+  Date a2 = {2013, 1, 1};
+  assert(weekday(a2) == 2);
 }
 
 void test_calendar()
@@ -99,7 +142,7 @@ void test_calendar()
 int main(int argc, const char *argv[]) 
 {
   // test_calendar();
-  test_days();
+  // test_days();
   test_weekday();
   return 0;
 }
