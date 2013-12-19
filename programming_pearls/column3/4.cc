@@ -6,6 +6,7 @@
 
 const char *month_names[] = {"January", "February", "March", "April", "May", "June", 
   "July", "August", "September", "October", "November", "December"};
+
 const char *weekday_names[] = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
 
 //                   1   2   3   4   5   6   7   8   9   10  11  12
@@ -41,7 +42,7 @@ int days_in_year(const Date& a)
 
 bool to_bool(int a)
 {
-  if (a <= 0)     return true;
+  if (a <= 0) return true;
   else if (a > 0) return false;
 }
 
