@@ -98,11 +98,18 @@ int weekday(const Date& a)
 void calendar(int year, int month)
 {
   int i;
+  int first_weekday;
   printf("       %d\n"
          "      %s\n"
-         "====================", year, month_names[month - 1]);
+         "Su Mo Tu We Th Fr Sa", year, month_names[month - 1]);
+  Date first = {year, month, 1};
+  first_weekday = weekday(first);
+  for (i = 0; i < first_weekday; i++) {
+    if (i == 0) printf("\n");
+    printf("   ");
+  }
   for (i = 0; i < months[is_leap(year)][month - 1]; i++) {
-    if (i % 7 == 0) printf("\n");
+    if ((i + first_weekday) % 7 == 0) printf("\n");
     printf("%-3d", i + 1);
   }
   printf("\n");
