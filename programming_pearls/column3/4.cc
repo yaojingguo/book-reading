@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <assert.h>
-#include <algorithm>
-
-using namespace std;
 
 #define TRUE  1
 #define FALSE 0
 
 const char *month_names[] = {"January", "February", "March", "April", "May", "June", 
   "July", "August", "September", "October", "November", "December"};
+const char *weekday_names[] = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
 
 //                   1   2   3   4   5   6   7   8   9   10  11  12
 int months[][12] = {{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
@@ -141,8 +139,8 @@ void test_calendar()
 
 int main(int argc, const char *argv[]) 
 {
-  // test_calendar();
-  // test_days();
+  test_days();
   test_weekday();
+  test_calendar();
   return 0;
 }
