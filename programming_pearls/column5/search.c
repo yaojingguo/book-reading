@@ -252,7 +252,7 @@ void timedriver()
 			x[i] = i;
 		for (i = 0; i < n; i++)
 			p[i] = i;
-		scramble(n);
+    scramble(n);
 		start = clock();
 		for (test = 0; test < numtests; test++) {
 			for (i = 0; i < n; i++) {
