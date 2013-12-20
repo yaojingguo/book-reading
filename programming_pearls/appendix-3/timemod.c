@@ -58,7 +58,8 @@ int maxfunc(int a, int b)
 
 
 int main()
-{   int i, j, k;
+{   
+  int i, j, k;
   float fi, fj, fk;
   int t, ex, timesum, start, globalstart;
   double nans;
