@@ -240,6 +240,7 @@ void scramble(int n)
 	DataType t;
 	for (i = n-1; i > 0; i--) {
 		j = (RAND_MAX*rand() + rand()) % (i + 1);
+    if (j < 0) j += (i + 1);
 		t = p[i]; p[i] = p[j]; p[j] = t;
 	}
 }
