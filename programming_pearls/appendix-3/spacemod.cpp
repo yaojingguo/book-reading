@@ -24,7 +24,8 @@ using namespace std;
 
 template <class T>
 void measure(const char *text)
-{ cout << " measure: " << text << "\t";
+{ 
+  cout << " measure: " << text << "\t";
   cout << sizeof(T) << "\n";
 }
 
@@ -46,7 +47,8 @@ struct structc60 { char c[60]; };
 struct structc61 { char c[61]; };
 
 int main()
-{ cout << "Raw sizeof";
+{ 
+  cout << "Raw sizeof";
   cout << "\nsizeof(char)="     << sizeof(char);  
   cout << "  sizeof(short)="    << sizeof(short);
   cout << "  sizeof(int)="      << sizeof(int);
