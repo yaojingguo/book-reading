@@ -23,7 +23,7 @@ using namespace std;
 // Must use macros; templates give funny answers
 
 template <class T>
-void measure(char *text)
+void measure(const char *text)
 {	cout << " measure: " << text << "\t";
 	cout << sizeof(T) << "\n";
 }
