@@ -21,10 +21,11 @@ int intcmp(int *i, int *j)
 #define swapmac(i, j) { t = x[i]; x[i] = x[j]; x[j] = t; }
 
 void swapfunc(int i, int j)
- {  int t = x[i];
+{  
+  int t = x[i];
   x[i] = x[j];
   x[j] = t;
- }
+}
 
 #define maxmac(a, b) ((a) > (b) ? (a) : (b))
 
