@@ -16,13 +16,15 @@ int n;
 float x[MAXN];
 
 void sprinkle() /* Fill x[n] with reals uniform on [-1,1] */
-{   int i;
+{   
+  int i;
   for (i = 0; i < n; i++)
     x[i] = 1 - 2*( (float) rand()/RAND_MAX);
 }
 
 float alg1()
-{   int i, j, k;
+{   
+  int i, j, k;
   float sum, maxsofar = 0;
   for (i = 0; i < n; i++)
     for (j = i; j < n; j++) {
@@ -36,7 +38,8 @@ float alg1()
 }
 
 float alg2()
-{   int i, j;
+{   
+  int i, j;
   float sum, maxsofar = 0;
   for (i = 0; i < n; i++) {
     sum = 0;
