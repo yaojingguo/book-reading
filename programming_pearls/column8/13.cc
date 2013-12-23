@@ -19,14 +19,15 @@ int kadane(int s[])
 
 int maxsum(int A[][N])
 {
-  int i, j, k, sum[N], maxsofar;
+  int i, j, k, sum[N], maxsofar = 0;
   for (i = 0; i < M; i++) {
     for (k = 0; k < N; k++) 
       sum[k] = 0;
-    for (j = i; j < M; j++)
+    for (j = i; j < M; j++) {
       for (k = 0; k < N; k++)
         sum[k] += A[j][k];
-      maxsofar = kadane(sum);
+      maxsofar = max(maxsofar, kadane(sum));
+    }
   }
   return maxsofar;
 }
@@ -38,5 +39,6 @@ int main(int argc, const char *argv[])
                  {3, 8, 10, 1, 3},
                  {-4, -1, 1, 7, -6}
                 };
+  printf("maximum subarray sum: %d\n", maxsum(A));
   return 0;
 }
