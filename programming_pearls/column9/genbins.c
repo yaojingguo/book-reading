@@ -39,7 +39,8 @@ struct node **bin, *sentinel;
 int bins, bincnt, maxval;
 
 void initbins(int maxelms, int pmaxval)
-{	int i;
+{	
+  int i;
 	bins = maxelms;
 	maxval = pmaxval;
 	bin = pmalloc(bins*sizeof(struct node *));
@@ -51,7 +52,8 @@ void initbins(int maxelms, int pmaxval)
 }
 
 struct node *rinsert(struct node *p, int t)
-{	if (p->val < t) {
+{	
+  if (p->val < t) {
 		p->next = rinsert(p->next, t);
 	} else if (p->val > t) {
 		struct node *q = pmalloc(sizeof(struct node));
@@ -64,14 +66,16 @@ struct node *rinsert(struct node *p, int t)
 }
 
 void insert(int t)
-{	int i;
+{	
+  int i;
 	i = t / (1 + maxval/bins);
 	i = t / (1 + maxval/bins);
 	bin[i] = rinsert(bin[i], t);
 }
 
 void report()
-{	int i, j = 0;
+{	
+  int i, j = 0;
 	struct node *p;
 	for (i = 0; i < bins; i++)
 		for (p = bin[i]; p != sentinel; p = p->next)
@@ -80,11 +84,13 @@ void report()
 }
 
 int bigrand()
-{	return RAND_MAX*rand() + rand();
+{	
+  return RAND_MAX*rand() + rand();
 }
 
 int main(int argc, char *argv[])
-{	int m = atoi(argv[1]);
+{	
+  int m = atoi(argv[1]);
 	int n = atoi(argv[2]);
 	initbins(m, n);
 	while (bincnt < m) {

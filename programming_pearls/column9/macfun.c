@@ -19,7 +19,8 @@ float x[MAXN];
 #define max1(a, b) ((a) > (b) ? (a) : (b))
 
 float arrmax1(int n)
-{	if (n == 1)
+{	
+  if (n == 1)
 		return x[0];
 	else
 		return max1(x[n-1], arrmax1(n-1));
@@ -29,11 +30,13 @@ float arrmax1(int n)
 /* arrmax2 -- max is a function */
 
 float max2(float a, float b)
-{	return a > b ? a : b;
+{	
+  return a > b ? a : b;
 }
 
 float arrmax2(int n)
-{	if (n == 1)
+{	
+  if (n == 1)
 		return x[0];
 	else
 		return max2(x[n-1], arrmax2(n-1));
@@ -47,7 +50,8 @@ float arrmax2(int n)
 #endif
 
 float arrmax3(int n)
-{	if (n == 1)
+{	
+  if (n == 1)
 		return x[0];
 	else
 		return max(x[n-1], arrmax3(n-1));
@@ -55,8 +59,9 @@ float arrmax3(int n)
 
 
 int main()
-{   int algnum, i, n, start, clicks;
-    float thisans;
+{   
+  int algnum, i, n, start, clicks;
+  float thisans;
 
 	for (i = 0; i < MAXN; i++)
 		x[i] = MAXN-i;
