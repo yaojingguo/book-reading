@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <algorithm>
 
-
 using namespace std;
 
 int max3(int a, int b, int c)
@@ -10,9 +9,9 @@ int max3(int a, int b, int c)
 }
 
 struct max_sum {
-  int pre;
-  int sub;
-  int suf;
+  int pre; // prefix
+  int sub; // substring
+  int suf; // suffix
 };
 
 struct max_sum maxsum(int x[], int l, int u, int presums[])
@@ -35,8 +34,8 @@ struct max_sum maxsum(int x[], int l, int u, int presums[])
   struct max_sum left = maxsum(x, l, m, presums);
   struct max_sum right = maxsum(x, m + 1, u, presums);
   cur.sub = max3(left.sub, left.suf + right.pre, right.sub);
-  cur.pre = max(left.pre, presums[m] + presums[l - 1] + right.pre);
-  cur.suf = max(right.suf, presums[u] + presums[m] + left.suf);
+  cur.pre = max(left.pre, presums[m] - presums[l - 1] + right.pre);
+  cur.suf = max(right.suf, presums[u] - presums[m] + left.suf);
   return cur;
 }
 
@@ -47,12 +46,18 @@ int maxsum(int x[], int n)
   presums[-1] = 0;
   for (int i = 0; i < n; i++)
     presums[i] = presums[i-1] + x[i];
+  struct max_sum s = maxsum(x, 0, n - 1, presums);
   delete [] ptr;
+  return s.sub;
 }
 
 int main(int argc, const char *argv[]) 
 {
-  int x[] = {13 ,3 ,25, 20, 3, 16, 23, 18, 20, 7, 12, 5, 22, 15, 4, 7};
-  maxsum(x, 16);
+  int x[] = {13, -3 ,-25, 20, 
+             -3, -16, -23, 18, 
+             20, -7, 12, -5, 
+             -22, 15, -4, 7};
+  int sum = maxsum(x, 16);
+  printf("maximum subarray sum: %d\n", sum);
   return 0;
 }
