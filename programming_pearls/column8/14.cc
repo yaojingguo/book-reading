@@ -19,16 +19,21 @@ int nearest_to_zero(int x[], int n, int m)
   return idx;
 }
 
-int main(int argc, const char *argv[]) 
+void verify(int x[], int n, int m)
 {
-  int a[] = {0, 1, 2, -8, 7, 3, -5, 9};
-  int *x = a + 1;
-  printf("%d\n", x[0]);
-  int n = 7, m = 2;
   int idx = nearest_to_zero(x, n, m);
   printf("idx: %d\n", idx);
   for (int i = idx; i <= idx + m; i++)
     printf("%d ", x[i]);
   printf("\n");
+}
+
+
+int main(int argc, const char *argv[]) 
+{
+  int a[] = {0, 1, 2, -8, 7, 3, -5, 9};
+  int *x = a + 1;
+  verify(x, 7, 2);
+  verify(x, 7, 1);
   return 0;
 }
