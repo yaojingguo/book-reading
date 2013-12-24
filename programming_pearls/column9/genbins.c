@@ -69,7 +69,6 @@ void insert(int t)
 { 
   int i;
   i = t / (1 + maxval/bins);
-  i = t / (1 + maxval/bins);
   bin[i] = rinsert(bin[i], t);
 }
 
