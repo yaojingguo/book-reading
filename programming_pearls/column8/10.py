@@ -12,7 +12,7 @@ def nearest_to_zero(A):
     diff = p[i + 1][0] - p[i][0]
     if nearest > diff:
       nearest = diff
-      pos = (p[i][1], p[i][1])
+      pos = (p[i + 1][1], p[i][1])
   pos = (min(pos), max(pos))
   return (nearest, pos)
 
