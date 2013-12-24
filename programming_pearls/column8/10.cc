@@ -1,40 +1,37 @@
 #include <map>
 #include <iostream>
 #include <algorithm>
+#include <limits.h>
 
 using namespace std;
 
-
-// return (i, j) s.t. A[i] + ... + A[j] is nearest to value c
+// Return i and j with A[i..j]
 pair<int, int> nearest_to_c(int t, int n, int A[]) {
   map<int, int> bst;
   bst[0] = -1;
-  // barriers
-  bst[-int(1e9)] = -2;
-  bst[int(1e9)] = n;
+  // barriers assume that no prefix sum is equal to INT_MAX or INT_MIN
+  bst[INT_MIN] = -1;
+  bst[INT_MAX] = n;
 
-  int sum = 0, start, end, ret = t;
-  for (int i = 0; i < n; ++i) {
-    sum += A[i];
-    // it->first >= sum-c, and with the minimal value in bst
-    map<int, int>::iterator it = bst.lower_bound(sum - t);
-    int tmp = -(sum - t - it->first);
-    if (tmp < ret) {
-      ret = tmp;
-      start = it->second + 1;
-      end = i;
+  int presum, subsum, i, j, start, end;
+  int closest;
+  bool unset;
+  map<int, int>::iterator it;
+  unset = true;
+  for (i = 0; i < n; ++i) {
+    presum += A[i];
+    for (it = bst.lower_bound(presum - t), j = 0; j < 2; --it, j++) {
+      if (it->first == -1 or it->first == n) 
+        continue;
+      subsum = presum - it->first;
+      if (unset || abs(closest - t) > abs(subsum - t)) {
+        closest = subsum;
+        start = it->second + 1;
+        end = i;
+        unset = false;
+      }
     }
-
-    --it;
-    // it->first < sum-c, and with the maximal value in bst
-    tmp = sum - t - it->first;
-    if (tmp < ret) {
-      ret = tmp;
-      start = it->second + 1;
-      end = i;
-    }
-
-    bst[sum] = i;
+    bst[presum] = i;
   }
   return make_pair(start, end);
 }
