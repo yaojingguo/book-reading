@@ -84,7 +84,7 @@ void report()
 
 int bigrand()
 { 
-  return RAND_MAX*rand() + rand();
+  return rand();
 }
 
 int main(int argc, char *argv[])
