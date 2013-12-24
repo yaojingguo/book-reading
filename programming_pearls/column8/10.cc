@@ -7,7 +7,7 @@ using namespace std;
 
 #define IDX_LOW_BOUND -2
 
-// Return i and j with A[i..j]
+// Return [i..j] range of A
 pair<int, int> nearest_to_c(int A[], int n, int t) {
   map<int, int> bst;
   int presum, subsum, closest, i, j, start, end;
@@ -19,7 +19,8 @@ pair<int, int> nearest_to_c(int A[], int n, int t) {
   bst[INT_MIN] = IDX_LOW_BOUND;
   bst[INT_MAX] = n;
   unset = true;
-  closest = INT_MAX;
+  // This initial value is always overwritten afterwards.
+  closest = 0; 
   presum = 0;
   for (i = 0; i < n; ++i) {
     presum += A[i];
