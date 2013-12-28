@@ -36,7 +36,9 @@ void swap(int i, int j)
 
 int randint(int l, int u)
 {	
-  int r = (RAND_MAX*random() + random()) % (u-l+1);
+  int divisor = u-l+1;
+  int r = (RAND_MAX*random() + random()) % divisor;
+  if (r < 0)
   return l + r;
 }
 
