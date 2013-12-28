@@ -28,26 +28,30 @@ int *x = realx;	/* allow x to shift for heaps */
 int n;
 
 void swap(int i, int j)
-{	DType t = x[i];
+{
+  DType t = x[i];
 	x[i] = x[j];
 	x[j] = t;
 }
 
 int randint(int l, int u)
-{	return l + (RAND_MAX*rand() + rand()) % (u-l+1);
+{	
+  return l + (RAND_MAX*rand() + rand()) % (u-l+1);
 }
 
 /* LIBRARY QSORT */
 
 int intcomp(int *x, int *y)
-{	return *x - *y;
+{
+  return *x - *y;
 }
 
 /* INSERTION SORTS */
 
 /* Simplest insertion sort */
 void isort1()
-{	int i, j;
+{	
+  int i, j;
 	for (i = 1; i < n; i++)
 		for (j = i; j > 0 && x[j-1] > x[j]; j--)
 			swap(j-1, j);
@@ -55,7 +59,8 @@ void isort1()
 
 /* Write swap function inline */
 void isort2()
-{	int i, j;
+{	
+  int i, j;
 	DType t;
 	for (i = 1; i < n; i++)
 		for (j = i; j > 0 && x[j-1] > x[j]; j--) {
@@ -67,7 +72,8 @@ void isort2()
 
 /* Move assignments to and from t out of loop */
 void isort3()
-{	int i, j;
+{
+  int i, j;
 	DType t;
 	for (i = 1; i < n; i++) {
 		t = x[i];
@@ -81,7 +87,8 @@ void isort3()
 
 /* Simplest version, Lomuto partitioning */
 void qsort1(int l, int u)
-{	int i, m;
+{
+  int i, m;
 	if (l >= u)
 		return;
 	m = l;
@@ -95,7 +102,8 @@ void qsort1(int l, int u)
 
 /* Sedgewick's version of Lomuto, with sentinel */
 void qsort2(int l, int u)
-{	int i, m;
+{	
+  int i, m;
 	if (l >= u)
 		return;
 	m = i = u+1;
@@ -109,7 +117,8 @@ void qsort2(int l, int u)
 
 /* Two-way partitioning */
 void qsort3(int l, int u)
-{	int i, j;
+{	
+  int i, j;
 	DType t;
 	if (l >= u)
 		return;
@@ -131,7 +140,8 @@ void qsort3(int l, int u)
 /* qsort3 + randomization + isort small subarrays + swap inline */
 int cutoff = 50;
 void qsort4(int l, int u)
-{	int i, j;
+{	
+  int i, j;
 	DType t, temp;
 	if (u - l < cutoff)
 		return;
@@ -154,7 +164,8 @@ void qsort4(int l, int u)
 /* selection */
 
 void select1(int l, int u, int k)
-{	int i, j;
+{	
+  int i, j;
 	DType t, temp;
 	if (l >= u)
 		return;
@@ -179,7 +190,8 @@ void select1(int l, int u, int k)
 /* HEAP SORTS */
 
 void siftup(int u)
-{	int i, p;
+{	
+  int i, p;
 	i = u;
 	for (;;) {
 		if (i == 1)
@@ -193,7 +205,8 @@ void siftup(int u)
 }
 
 void siftdown1(int l, int u)
-{	int i, c;
+{	
+  int i, c;
 	i = l;
 	for (;;) {
 		c = 2*i;
@@ -209,7 +222,8 @@ void siftdown1(int l, int u)
 }
 
 void siftdown1b(int l, int u) /* More C-ish version of 1 */
-{	int i, c;
+{	
+  int i, c;
 	for (i = l; (c = 2*i) <= u; i = c) {
 		if (c+1 <= u && x[c+1] > x[c])
 			c++;
@@ -220,7 +234,8 @@ void siftdown1b(int l, int u) /* More C-ish version of 1 */
 }
 
 void hsort1()
-{	int i;
+{	
+  int i;
 	x--;
 	for (i = 2; i <= n; i++)
 		siftup(i);
@@ -232,7 +247,8 @@ void hsort1()
 }
 
 void hsort2()
-{	int i;
+{	
+  int i;
 	x--;
 	for (i = n/2; i >= 1; i--)
 		siftdown1(i, n);
@@ -244,7 +260,8 @@ void hsort2()
 }
 
 void siftdown3(int l, int u) /* push to bottom, then back up */
-{	int i, c, p;
+{	
+  int i, c, p;
 	i = l;
 	for (;;) {
 		c = 2*i;
@@ -267,7 +284,8 @@ void siftdown3(int l, int u) /* push to bottom, then back up */
 }
 
 void hsort3()
-{	int i;
+{	
+  int i;
 	x--;
 	for (i = n/2; i >= 1; i--)
 		siftdown3(i, n);
@@ -279,7 +297,8 @@ void hsort3()
 }
 
 void siftdown4(int l, int u) /* replace swap with assignments */
-{	int i, c, p;
+{	
+  int i, c, p;
 	DType t;
 	t = x[l];
 	i = l;
@@ -305,7 +324,8 @@ void siftdown4(int l, int u) /* replace swap with assignments */
 }
 
 void hsort4()
-{	int i;
+{	
+  int i;
 	x--;
 	for (i = n/2; i >= 1; i--)
 		siftdown4(i, n);
@@ -320,7 +340,8 @@ void hsort4()
 /* Other Sorts -- Exercises in Column 11 */
 
 void selsort()  /* Selection sort */
-{	int i, j;
+{	
+  int i, j;
 	for (i = 0; i < n-1; i++)
 		for (j = i; j < n; j++)
 			if (x[j] < x[i])
@@ -328,7 +349,8 @@ void selsort()  /* Selection sort */
 }
 
 void shellsort()
-{	int i, j, h;
+{	
+  int i, j, h;
 	for (h = 1; h < n; h = 3*h + 1)
 		;
 	for (;;) {
@@ -350,7 +372,8 @@ void shellsort()
 /* Timing */
 
 void timedriver()
-{	int i, k, algnum, mod, start, clicks;
+{	
+  int i, k, algnum, mod, start, clicks;
 	while (scanf("%d %d %d", &algnum, &n, &mod) != EOF) {
 		if (mod <= 0)
 			mod = 10*n;
@@ -398,6 +421,7 @@ void timedriver()
 /* Main */
 
 int main()
-{	timedriver();
+{	
+  timedriver();
 	return 0;
 }
