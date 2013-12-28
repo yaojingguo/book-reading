@@ -13,16 +13,17 @@ void qsort(int a[], int l, int u)
 {
   stack<range> st;
   int m, i;
-  range r = {l, m};
+  range r = {l, u};
   st.push(r);
   while (!st.empty()) {
-    l = st.top().l;
-    u = st.top().u;
+    r = st.top();
     st.pop();
+    l = r.l;
+    u = r.u;
     if (l >= u)
       continue;
     m = l;
-    for (i = l + 1; i <= u; i++)
+    for (i = l + 1; i <= u; i++) 
       if (a[i] < a[l])
         swap(a[++m], a[i]);
     swap(a[l], a[m]);
