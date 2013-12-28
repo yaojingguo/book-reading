@@ -11,3 +11,4 @@ sort       0.012nlg(n)
 qsort      0.014nlg(n)
 selsort    3.6*n^2
 shellsort  0.1*n^2
+select1    20*n
