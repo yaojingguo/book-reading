@@ -36,7 +36,7 @@ void swap(int i, int j)
 
 int randint(int l, int u)
 {	
-  return l + (RAND_MAX*rand() + rand()) % (u-l+1);
+  return l + (RAND_MAX*random() + random()) % (u-l+1);
 }
 
 /* LIBRARY QSORT */
