@@ -27,7 +27,7 @@ void qsort(int a[], int l, int u)
       if (a[i] < a[l])
         swap(a[++m], a[i]);
     swap(a[l], a[m]);
-    if (m - 1 - l <= u - m - 1) {
+    if (m - 1 - l >= u - m - 1) {
       r.l = l; 
       r.u = m - 1;
       st.push(r);
