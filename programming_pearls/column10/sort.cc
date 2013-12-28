@@ -385,24 +385,24 @@ void timedriver()
 			x[i] = randint(0, mod-1);
 		k = n/2;
 		start = clock();
-		switch (algnum) {
-		case 11: qsort(x, n, sizeof(int), (int (*)(const void *,const void *)) intcomp); break;
-		case 12: sort(x, x+n); break;
-		case 21: isort1(); break;
-		case 22: isort2(); break;
-		case 23: isort3(); break;
-		case 31: qsort1(0, n-1); break;
-		case 32: qsort2(0, n-1); break;
-		case 33: qsort3(0, n-1); break;
-		case 34: qsort4(0, n-1); isort3(); break;
-		case 41: select1(0, n-1, k); break;
-		case 51: hsort1(); break;
-		case 52: hsort2(); break;
-		case 53: hsort3(); break;
-		case 54: hsort4(); break;
-		case 61: selsort(); break;
-		case 62: shellsort(); break;
-		}
+    switch (algnum) {
+      case 11: qsort(x, n, sizeof(int), (int (*)(const void *,const void *)) intcomp); break;
+      case 12: sort(x, x+n); break;
+      case 21: isort1(); break;
+      case 22: isort2(); break;
+      case 23: isort3(); break;
+      case 31: qsort1(0, n-1); break;
+      case 32: qsort2(0, n-1); break;
+      case 33: qsort3(0, n-1); break;
+      case 34: qsort4(0, n-1); isort3(); break;
+      case 41: select1(0, n-1, k); break;
+      case 51: hsort1(); break;
+      case 52: hsort2(); break;
+      case 53: hsort3(); break;
+      case 54: hsort4(); break;
+      case 61: selsort(); break;
+      case 62: shellsort(); break;
+    }
 		clicks = clock() - start;
 		if (algnum == 41) { /* Test selection */
 			for (i = 0; i < k; i++)
