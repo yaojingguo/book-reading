@@ -36,10 +36,10 @@ void swap(int i, int j)
 
 int randint(int l, int u)
 {	
-  int divisor, r;
-  divisor = u-l+1;
-  r = (RAND_MAX*random() + random()) % divisor;
-  if (r < 0) r += divisor;
+  int mod, r;
+  mod = u-l+1;
+  r = (RAND_MAX*random() + random()) % mod;
+  if (r < 0) r += mod;
   return l + r;
 }
 
