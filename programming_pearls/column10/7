@@ -1,0 +1,13 @@
+PROGRAM    NANOSECONDS
+========================
+isort1     4.4*n^2
+isort2     3*n^2
+isort2     1.9*n^2
+qsort1     0.13nlg(n)
+qsort2     0.47nlg(n)
+qsort3     0.013nlg(n)
+qsort4     0.00903nlg(n)
+sort       0.012nlg(n)
+qsort      0.014nlg(n)
+selsort    3.6*n^2
+shellsort  0.1*n^2
