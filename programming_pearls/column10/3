@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <algorithm>
+#include <assert.h>
+
+using namespace std;
+
+void selection_sort(int x[], int n)
+{
+  int i, j, t;
+  for (i = 0; i <= n - 2; i++) {
+    t = i;
+    for (j = i + 1; j <= n - 1; j++)
+      if (x[t] > x[j])
+        t = j;
+    swap(x[t], x[i]);
+  }
+}
+
+void shell_sort(int x[], int n)
+{
+  int h, i;
+  for (h = 1; h < n; h = 3 * h + 1)
+    ;
+  for (;;) {
+    h /= 3;
+    if (h < 1) 
+      break;
+    for ()
+
+  }
+}
+
+void verify(int x[], int n)
+{
+  int i;
+  for (i = 0; i <= n - 2; i++)
+    assert(x[i] <= x[i + 1]);
+}
+
+void test_selection_sort()
+{
+  int x[] = {8, 1, 2, 6, 5, 3};
+  int n = 6;
+  selection_sort(x, 6);
+  verify(x, 6);
+}
+
+int main(int argc, const char *argv[]) 
+{
+  return 0;
+}
