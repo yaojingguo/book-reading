@@ -359,7 +359,7 @@ void timedriver()
 		k = n/2;
 		start = clock();
 		switch (algnum) {
-		case 11: qsort(x, n, sizeof(int), (int (__cdecl *)(const void *,const void *)) intcomp); break;
+		case 11: qsort(x, n, sizeof(int), (int (*)(const void *,const void *)) intcomp); break;
 		case 12: sort(x, x+n); break;
 		case 21: isort1(); break;
 		case 22: isort2(); break;
