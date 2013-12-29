@@ -9,15 +9,18 @@
 using namespace std;
 
 int bigrand()
-{	return RAND_MAX*rand() + rand();
+{	
+  return RAND_MAX*rand() + rand();
 }
 
 int randint(int l, int u)
-{	return l + bigrand() % (u-l+1);
+{	
+  return l + bigrand() % (u-l+1);
 }
 
 void genknuth(int m, int n)
-{	for (int i = 0; i < n; i++)
+{	
+  for (int i = 0; i < n; i++)
 		/* select m of remaining n-i */
 		if ((bigrand() % (n-i)) < m) {
 			cout << i << "\n";
@@ -26,7 +29,8 @@ void genknuth(int m, int n)
 }
 
 void gensets(int m, int n)
-{	set<int> S;
+{	
+  set<int> S;
  	set<int>::iterator i;
 	while (S.size() < m) {
 		int t = bigrand() % n;
@@ -37,7 +41,8 @@ void gensets(int m, int n)
 }
 
 void genshuf(int m, int n)
-{	int i, j;
+{	
+  int i, j;
 	int *x = new int[n];
 	for (i = 0; i < n; i++)
 		x[i] = i;
@@ -51,7 +56,8 @@ void genshuf(int m, int n)
 }
 
 void genfloyd(int m, int n)
-{	set<int> S;
+{	
+  set<int> S;
 	set<int>::iterator i;
 	for (int j = n-m; j < n; j++) {
 		int t = bigrand() % (j+1);
@@ -65,7 +71,8 @@ void genfloyd(int m, int n)
 }
 
 int main(int argc, char *argv[])
-{	int m = atoi(argv[1]);
+{	
+  int m = atoi(argv[1]);
 	int n = atoi(argv[2]);
 	genknuth(m, n);
 	return 0;
