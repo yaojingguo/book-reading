@@ -25,6 +25,7 @@ void genknuth(int m, int n)
 { 
   for (int i = 0; i < n; i++)
     /* select m of remaining n-i */
+    // XXX FIXME negative values
     if ((bigrand() % (n-i)) < m) {
       cout << i << "\n";
       m--;
