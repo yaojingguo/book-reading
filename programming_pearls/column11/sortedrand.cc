@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 { 
   int m = atoi(argv[1]);
   int n = atoi(argv[2]);
-  genknuth(m, n);
+  // genknuth(m, n);
+  gensets(m, n);
   return 0;
 }
