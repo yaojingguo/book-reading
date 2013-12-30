@@ -29,6 +29,8 @@ void randselect(int m, int n)
   }
 }
 
+// n = 0 and m != 0 case: c(1, 1) = c(0, 0) + c(0, 1)
+// n < m case: c(2, 2) = c(1, 1) + c(1, 2)
 void comb(int m, int n, vector<bool>& set)
 {
   if (m == 0) {
