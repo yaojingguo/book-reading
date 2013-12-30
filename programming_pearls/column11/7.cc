@@ -19,8 +19,8 @@ void randselect(int m, int n)
 {
   if (m > 0) {
     if (randint(0, n - 1) < m) {
-      printf("%d\n", n - 1);
       randselect(m - 1, n - 1);
+      printf("%d\n", n - 1);
     } else
       randselect(m, n - 1);
   }
