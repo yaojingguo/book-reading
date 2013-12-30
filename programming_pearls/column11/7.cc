@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <algorithm>
+#include <vector>
+
+using namespace std;
 
 int bigrand()
 { 
@@ -26,10 +29,33 @@ void randselect(int m, int n)
   }
 }
 
+void comb(int m, int n, vector<bool>& set)
+{
+  if (m == 0) {
+    for (int i = set.size() - 1; i >= 0; i--)
+      if (set[i])
+        printf("%d ", i + 1);
+    printf("\n");
+    return;
+  }
+  if (n == 0 || n < m)
+    return;
+  comb(m, n - 1, set);
+  set[n - 1] = true;
+  comb(m - 1, n - 1, set);
+  set[n - 1] = false;
+}
+
+void c(int m, int n)
+{
+  vector<bool> set(n);
+  comb(m, n, set); 
+}
+
 int main(int argc, const char *argv[]) 
 {
   int m = atoi(argv[1]);
   int n = atoi(argv[2]);
-  randselect(m, n);
+  c(m, n);
   return 0;
 }
