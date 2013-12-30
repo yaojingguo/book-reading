@@ -13,6 +13,7 @@ int bigrand()
   return RAND_MAX*rand() + rand();
 }
 
+/* [l, u] */
 int randint(int l, int u)
 { 
   int mod = u-l+1;
@@ -25,8 +26,7 @@ void genknuth(int m, int n)
 { 
   for (int i = 0; i < n; i++)
     /* select m of remaining n-i */
-    // XXX FIXME negative values
-    if ((bigrand() % (n-i)) < m) {
+    if (randint(0, n-i-1) < m) {
       cout << i << "\n";
       m--;
     }
