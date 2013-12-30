@@ -28,7 +28,7 @@ void genknuth(int m, int n)
     /* select m of remaining n-i */
     if (randint(0, n-i-1) < m) {
       cout << i << "\n";
-      m--;
+      if (--m == 0) break;
     }
 }
 
@@ -37,7 +37,7 @@ void gensets(int m, int n)
   set<int> S;
   set<int>::iterator i;
   while (S.size() < m) {
-    int t = bigrand() % n;
+    int t = randint(0, n-1);
     S.insert(t);
   }
   for (i = S.begin(); i != S.end(); ++i)
