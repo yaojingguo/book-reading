@@ -64,7 +64,7 @@ void genfloyd(int m, int n)
   set<int> S;
   set<int>::iterator i;
   for (int j = n-m; j < n; j++) {
-    int t = bigrand() % (j+1);
+    int t = randint(0, j);
     if (S.find(t) == S.end())
       S.insert(t); // t not in S
     else
@@ -79,6 +79,7 @@ int main(int argc, char *argv[])
   int m = atoi(argv[1]);
   int n = atoi(argv[2]);
   // genknuth(m, n);
-  gensets(m, n);
+  // gensets(m, n);
+  genfloyd(m, n);
   return 0;
 }
