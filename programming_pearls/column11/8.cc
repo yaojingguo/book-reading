@@ -1,5 +1,7 @@
 #include <algorithm>
 #include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -56,6 +58,7 @@ void genshuf3(int m, int n)
 
 int main(int argc, const char *argv[]) 
 {
+  srand(getpid());
   genshuf1(10, 100);
   genshuf2(10, 5);
   genshuf3(10, 5);
