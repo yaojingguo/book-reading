@@ -17,7 +17,7 @@ int randint(int l, int u)
   return l + r;
 }
 
-void genshuf(int m, int n)
+void genshuf1(int m, int n)
 {
   int i, j;
   int *x = new int[n];
@@ -27,13 +27,37 @@ void genshuf(int m, int n)
     j = randint(i, n - 1);
     swap(x[i], x[j]);
   }
-  for (int i = 0; i < m; i++)
-    printf("%d ", x[i] + 1);
+  for (i = 0; i < m; i++)
+    printf("%d ", x[i]);
+  printf("\n");
+  delete [] x;
+}
+
+void genshuf2(int m, int n)
+{
+  int i;
+  int *x = new int[m];
+  for (i = 0; i < m; i++)
+    x[i] = randint(0, n - 1);
+  sort(x, x + m);
+  for (i = 0; i < m; i++)
+    printf("%d ", x[i]);
+  printf("\n");
+  delete [] x;
+}
+
+void genshuf3(int m, int n)
+{
+  int i;
+  for (i = 0; i < m; i++)
+    printf("%d ", randint(0, n - 1));
   printf("\n");
 }
 
 int main(int argc, const char *argv[]) 
 {
-  genshuf(10, 100);
+  genshuf1(10, 100);
+  genshuf2(10, 5);
+  genshuf3(10, 5);
   return 0;
 }
