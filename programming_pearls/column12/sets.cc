@@ -16,7 +16,8 @@ public:
 	int size() { return S.size(); }
 	void insert(int t) { S.insert(t);}
 	void report(int *v)
-	{	int j = 0;
+	{	
+    int j = 0;
 		set<int>::iterator i;
 		for (i = S.begin(); i != S.end(); ++i)
 			v[j++] = *i;
@@ -33,7 +34,8 @@ private:
 	int  test(int i) { return x[i>>SHIFT] &   (1<<(i & MASK)); }
 public:
 	IntSetBitVec(int maxelements, int maxval)
-	{	hi = maxval;
+	{
+    hi = maxval;
 		x = new int[1 + hi/BITSPERWORD];
 		for (int i = 0; i < hi; i++)
 			clr(i);
@@ -41,13 +43,15 @@ public:
 	}
 	int size() { return n; }
 	void insert(int t)
-	{	if (test(t))
+	{	
+    if (test(t))
 			return;
 		set(t);
 		n++;
 	}
 	void report(int *v)
-	{	int j=0;
+	{	
+    int j=0;
 		for (int i = 0; i < hi; i++)
 			if (test(i))
 				v[j++] = i;
@@ -66,7 +70,8 @@ public:
 	}
 	int size() { return n; }
 	void insert(int t)
-	{	int i, j;
+	{	
+    int i, j;
 		for (i = 0; x[i] < t; i++)
 			;
 		if (x[i] == t)
@@ -77,7 +82,8 @@ public:
 		n++;
 	}
 	void report(int *v)
-	{	for (int i = 0; i < n; i++)
+	{	
+    for (int i = 0; i < n; i++)
 			v[i] = x[i];
 	}
 };
@@ -93,7 +99,8 @@ private:
 	};
 	node *head, *sentinel;
 	node *rinsert(node *p, int t)
-	{	if (p->val < t) {
+	{	
+    if (p->val < t) {
 			p->next = rinsert(p->next, t);
 		} else if (p->val > t) {
 			p = new node(t, p);
@@ -103,13 +110,15 @@ private:
 	}
 public:
 	IntSetList(int maxelements, int maxval)
-	{	sentinel = head = new node(maxval, 0);
+	{	
+    sentinel = head = new node(maxval, 0);
 		n = 0;
 	}
 	int size() { return n; }
 	void insert(int t) { head = rinsert(head, t); }
 	void insert2(int t)
-	{	node *p;
+	{	
+    node *p;
 		if (head->val == t)
 			return;
 		if (head->val > t) {
@@ -125,7 +134,8 @@ public:
 		n++;
 	}
 	void insert3(int t)
-	{	node **p;
+	{	
+    node **p;
 		for (p = &head; (*p)->val < t; p = &((*p)->next))
 			;
 		if ((*p)->val == t)
@@ -134,7 +144,8 @@ public:
 		n++;
 	}
 	void report(int *v)
-	{	int j = 0;
+	{
+    int j = 0;
 		for (node *p = head; p != sentinel; p = p->next)
 			v[j++] = p->val;
 	}
@@ -152,14 +163,16 @@ private:
 	node *head, *sentinel, *freenode;
 public:
 	IntSetList2(int maxelements, int maxval)
-	{	sentinel = head = new node;
+	{	
+    sentinel = head = new node;
 		sentinel->val = maxval;
 		freenode = new node[maxelements];
 		n = 0;
 	}
 	int size() { return n; }
 	void insert(int t)
-	{	node **p;
+	{
+    node **p;
 		for (p = &head; (*p)->val < t; p = &((*p)->next))
 			;
 		if ((*p)->val == t)
@@ -170,7 +183,8 @@ public:
 		n++;
 	}
 	void report(int *v)
-	{	int j = 0;
+	{	
+    int j = 0;
 		for (node *p = head; p != sentinel; p = p->next)
 			v[j++] = p->val;
 	}
@@ -187,7 +201,8 @@ private:
 	};
 	node *root;
 	node *rinsert(node *p, int t)
-	{	if (p == 0) {
+	{	
+    if (p == 0) {
 			p = new node(t);
 			n++;
 		} else if (t < p->val) {
@@ -198,7 +213,8 @@ private:
 		return p;
 	}
 	void traverse(node *p)
-	{	if (p == 0)
+	{
+    if (p == 0)
 			return;
 		traverse(p->left);
 		v[vn++] = p->val;
@@ -221,7 +237,8 @@ private:
 	};
 	node *root, *freenode, *sentinel;
 	node *rinsert(node *p, int t)
-	{	if (p == sentinel) {
+	{
+    if (p == sentinel) {
 			p = freenode++;
 			p->val = t;
 			p->left = p->right = sentinel;
@@ -234,7 +251,8 @@ private:
 		return p;
 	}
 	void traverse(node *p)
-	{	if (p == sentinel)
+	{	
+    if (p == sentinel)
 			return;
 		traverse(p->left);
 		v[vn++] = p->val;
@@ -242,14 +260,16 @@ private:
 	}
 public:
 	IntSetBST2(int maxelements, int maxval)
-	{	root = sentinel = new node;  // 0 if using insert1
+	{
+    root = sentinel = new node;  // 0 if using insert1
 		n = 0;
 		freenode = new node[maxelements];
 	}
 	int size() { return n; }
 	void insert1(int t) { root = rinsert(root, t); }
 	void insert(int t)
-	{	sentinel->val = t;
+	{	
+    sentinel->val = t;
 		node **p = &root;
 		while ((*p)->val != t)
 			if (t < (*p)->val)
@@ -277,7 +297,8 @@ private:
 	};
 	node **bin, *sentinel;
 	node *rinsert(node *p, int t)
-	{	if (p->val < t) {
+	{	
+    if (p->val < t) {
 			p->next = rinsert(p->next, t);
 		} else if (p->val > t) {
 			p = new node(t, p);
@@ -287,7 +308,8 @@ private:
 	}
 public:
 	IntSetBins(int maxelements, int pmaxval)
-	{	bins = maxelements;
+	{	
+    bins = maxelements;
 		maxval = pmaxval;
 		bin = new node*[bins];
 		sentinel = new node(maxval, 0);
@@ -297,11 +319,13 @@ public:
 	}
 	int size() { return n; }
 	void insert(int t)
-	{	int i = t / (1 + maxval/bins);  // CHECK !
+	{	
+    int i = t / (1 + maxval/bins);  // CHECK !
 		bin[i] = rinsert(bin[i], t);
 	}
 	void report(int *v)
-	{	int j = 0;
+	{	
+    int j = 0;
 		for (int i = 0; i < bins; i++)
 			for (node *p = bin[i]; p != sentinel; p = p->next)
 				v[j++] = p->val;
@@ -318,7 +342,8 @@ private:
 	};
 	node **bin, *sentinel, *freenode;
 	node *rinsert(node *p, int t)
-	{	if (p->val < t) {
+	{	
+    if (p->val < t) {
 			p->next = rinsert(p->next, t);
 		} else if (p->val > t) {
 			freenode->val = t;
@@ -330,7 +355,8 @@ private:
 	}
 public:
 	IntSetBins2(int maxelements, int pmaxval)
-	{	bins = maxelements;
+	{	
+    bins = maxelements;
 		maxval = pmaxval;
 		freenode = new node[maxelements];
 		bin = new node*[bins];
@@ -342,11 +368,13 @@ public:
 	}
 	int size() { return n; }
 	void insert1(int t)
-	{	int i = t / (1 + maxval/bins);
+	{	
+    int i = t / (1 + maxval/bins);
 		bin[i] = rinsert(bin[i], t);
 	}
 	void insert(int t)
-	{	node **p;
+	{	
+    node **p;
 		int i = t / (1 + maxval/bins);
 		for (p = &bin[i]; (*p)->val < t; p = &((*p)->next))
 			;
@@ -358,7 +386,8 @@ public:
 		n++;
 	}
 	void report(int *v)
-	{	int j = 0;
+	{	
+    int j = 0;
 		for (int i = 0; i < bins; i++)
 			for (node *p = bin[i]; p != sentinel; p = p->next)
 				v[j++] = p->val;
@@ -369,15 +398,18 @@ public:
 // Drivers for the set data structures
 
 int bigrand()
-{	return RAND_MAX*rand() + rand();
+{
+  return RAND_MAX*rand() + rand();
 }
 
 int randint(int l, int u)
-{	return l + bigrand() % (u-l+1);
+{	
+  return l + bigrand() % (u-l+1);
 }
 
 void gensets(int m, int maxval)
-{	int *v = new int[m];
+{
+  int *v = new int[m];
 	IntSetList S(m, maxval);
 	while (S.size() < m)
 		S.insert(bigrand() % maxval);
@@ -388,7 +420,8 @@ void gensets(int m, int maxval)
 }
 
 void genfloyd(int m, int maxval)
-{	int *v = new int[m];
+{	
+  int *v = new int[m];
 	IntSetSTL S(m, maxval);
 	for (int j = maxval-m; j < maxval; j++) {
 		int t = bigrand() % (j+1);
@@ -403,13 +436,15 @@ void genfloyd(int m, int maxval)
 }
 
 void memaccesstest(int m, int n)
-{	IntSetList S(m, n);	// change among Arr, List and List2
+{	
+  IntSetList S(m, n);	// change among Arr, List and List2
 	for (int i = 0; i < m; i++)
 		S.insert(i);
 }
 
 void overheadonly(int m, int n)
-{	int i, *v = new int[m];
+{	
+  int i, *v = new int[m];
 	for (i = 0; i < m; i++)
 		v[i] = bigrand() % n;
 	for (i = 0; i < m; i++)
@@ -417,7 +452,8 @@ void overheadonly(int m, int n)
 }
 
 int main(int argc, char *argv[])
-{	int m = atoi(argv[1]);
+{	
+  int m = atoi(argv[1]);
 	int maxval = atoi(argv[2]);
 	gensets(m, maxval);
 	// overheadonly(m, n);
