@@ -64,7 +64,8 @@ private:
   int n, *x;
 public:
   IntSetArr(int maxelements, int maxval)
-  { x = new int[1 + maxelements];
+  { 
+    x = new int[1 + maxelements];
     n=0;
     x[0] = maxval; /* sentinel at x[n] */
   }
