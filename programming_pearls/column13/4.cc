@@ -25,6 +25,8 @@ class IntSetList {
         q = p;
         p = p->next;
       }
+      if (t == p->val)
+        return;
       node* r = new node(t, p);
       if (q == NULL) {
         head = r;
@@ -61,7 +63,30 @@ class IntSetBST {
   public:
     IntSetBST(int maxelements, int maxval) { root = 0; n = 0; }
     int size() { return n; }
-    void insert(int t) { }
+    void insert(int t) { 
+      if (root == NULL) {
+        root = new node(t);
+      } else {
+        node* p = root;
+        for (;;) 
+          if (t < p->val) {
+            if (p->left == NULL) {
+              p->left = new node(t);
+              break;
+            } else 
+              p = p->left;
+          } else if (t > p->val) {
+            if (p->right == NULL) {
+              p->right = new node(t);
+              break;
+            } else
+              p = p->right;
+          } else {
+            return;
+          }
+      }
+      n++;
+    }
     void report(int *x) { v = x; vn = 0; traverse(root); }
 };
 
@@ -95,6 +120,8 @@ class IntSetBins {
         q = p;
         p = p->next;
       }
+      if (t == p->val)
+        return;
       node* r = new node(t, p);
       if (q == NULL) {
         bin[i] = r;
@@ -146,7 +173,17 @@ void test_bins()
 }
 
 void test_bst()
-{
+{ 
+  IntSetBST set(10, 100);
+  set.insert(0);
+  set.insert(7);
+  set.insert(27);
+  set.insert(80);
+  assert(set.size() == 4);
+  int* v = new int[set.size()];
+  set.report(v);
+  info(v, set.size());
+  delete [] v;
 }
 
 int main(int argc, const char *argv[]) 
