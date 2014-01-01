@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 class IntSetList {
   private:
@@ -16,7 +17,22 @@ class IntSetList {
       n = 0;
     }
     int size() { return n; }
-    void insert(int t) {}
+    void insert(int t) 
+    {
+      node* p = head;
+      node* q = NULL;
+      while (t > p->val) {
+        q = p;
+        p = p->next;
+      }
+      node* r = new node(t, p);
+      if (q == NULL) {
+        head = r;
+      } else {
+        q->next = r;
+      }
+      n++;
+    }
     void report(int *v)
     {
       int j = 0;
@@ -72,7 +88,20 @@ class IntSetBins {
     int size() { return n; }
     void insert(int t)
     { 
-      int i = t / (1 + maxval/bins);  // CHECK !
+      int i = t / (1 + maxval/bins); 
+      node* p = bin[i];
+      node* q = NULL;
+      while (t > p->val) {
+        q = p;
+        p = p->next;
+      }
+      node* r = new node(t, p);
+      if (q == NULL) {
+        bin[i] = r;
+      } else {
+        q->next = r;
+      }
+      n++;
     }
     void report(int *v)
     { 
@@ -83,7 +112,47 @@ class IntSetBins {
     }
 };
 
+void info(int x[], int n)
+{
+  for (int i = 0; i < n; i++)
+    printf("%d ", x[i]);
+  printf("\n");
+}
+
+void test_list()
+{
+  IntSetList set(3, 10);
+  set.insert(0);
+  set.insert(7);
+  assert(set.size() == 2);
+  int* v = new int[set.size()];
+  set.report(v);
+  info(v, set.size());
+  delete [] v;
+}
+
+void test_bins()
+{
+  IntSetBins set(10, 100);
+  set.insert(0);
+  set.insert(7);
+  set.insert(27);
+  set.insert(80);
+  assert(set.size() == 4);
+  int* v = new int[set.size()];
+  set.report(v);
+  info(v, set.size());
+  delete [] v;
+}
+
+void test_bst()
+{
+}
+
 int main(int argc, const char *argv[]) 
 {
+  test_list();
+  test_bins();
+  test_bst();
   return 0;
 }
