@@ -44,13 +44,6 @@ class IntSetArr {
       for (int i = 0; i < n; i++)
         v[i] = x[i];
     } 
-    bool find(int t) 
-    {
-      int i;
-      for (i = 0; x[i] < t; i++)
-        ;
-      return x[i] == t;
-    }
 };
 
 void genfloyd(int m, int n)
@@ -59,10 +52,10 @@ void genfloyd(int m, int n)
   int i;
   for (i = n - m; i < n; i++) {
     int t = randint(0, i);
-    if (S.find(t))
+    int oldsize = S.size();
+    S.insert(t);
+    if (S.size() == oldsize)
       S.insert(i);
-    else
-      S.insert(t);
   }
   int* v = new int[m];
   S.report(v);
