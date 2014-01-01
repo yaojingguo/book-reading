@@ -39,6 +39,20 @@ class IntSetArr {
       x[i] = t;
       n++;
     }
+    // Use binary search. Problem 3.
+    bool find(int t)
+    {
+      int l, u, m;
+      l = 0;
+      u = n - 1;
+      while (l <= u) {
+        m = (u - l) / 2 + l;
+        if      (t > x[m]) l = m + 1;
+        else if (t < x[m]) u = m - 1;
+        else    return true;
+      }
+      return false;
+    }
     void report(int *v)
     { 
       for (int i = 0; i < n; i++)
@@ -52,10 +66,10 @@ void genfloyd(int m, int n)
   int i;
   for (i = n - m; i < n; i++) {
     int t = randint(0, i);
-    int oldsize = S.size();
-    S.insert(t);
-    if (S.size() == oldsize)
+    if (S.find(t))
       S.insert(i);
+    else
+      S.insert(t);
   }
   int* v = new int[m];
   S.report(v);
