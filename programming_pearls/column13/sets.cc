@@ -405,7 +405,10 @@ int bigrand()
 
 int randint(int l, int u)
 { 
-  return l + bigrand() % (u-l+1);
+  int mod = u-l+1;
+  int r = bigrand() % mod;
+  if (r < 0) r += mod;
+  return l + r;
 }
 
 void gensets(int m, int maxval)
@@ -413,9 +416,11 @@ void gensets(int m, int maxval)
   int *v = new int[m];
   IntSetList S(m, maxval);
   while (S.size() < m)
-    S.insert(bigrand() % maxval);
+    // S.insert(bigrand() % maxval);
+    S.insert(randint(0, maxval - 1));
   S.report(v);
-  for (int i = 0; i < m; i++)
+  // for (int i = 0; i < m; i++)
+  for (int i = 0; i < 2; i++)
     cout << v[i] << "\n";
 }
 
