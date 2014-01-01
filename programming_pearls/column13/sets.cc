@@ -415,7 +415,7 @@ void gensets(int m, int maxval)
   while (S.size() < m)
     S.insert(bigrand() % maxval);
   S.report(v);
- for (int i = 0; i < m; i++)
+  for (int i = 0; i < m; i++)
     cout << v[i] << "\n";
 }
 
