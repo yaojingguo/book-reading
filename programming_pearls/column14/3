@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <assert.h>
+
+int log(unsigned n)
+{
+  assert(n > 0);
+  int i = 0;
+  while (n > 1) {
+    n >>= 1;
+    i++;
+  }
+  return i;
+}
+
+int* build_table(int n)
+{
+  int l = log(n);
+  int* table = new 
+}
+
+int main(int argc, const char *argv[]) 
+{
+  return 0;
+}

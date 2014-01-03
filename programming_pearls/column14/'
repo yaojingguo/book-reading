@@ -14,7 +14,10 @@ int log(unsigned n)
 
 void build(int l, int u, int table[], int i)
 {
-  if (l > u) return;
+  if (l > u) {
+    table[i] = -1;
+    return;
+  }
   int m = (u - l) / 2 + l;
   table[i] = m;
   build(l, m - 1, table, 2*i);
@@ -26,10 +29,9 @@ int* build_table(int n)
   int l = log(n);
   int size = 1 << (l+1);
   int* table = new int[size];
-  for (int i = 1; i < size; i++)
-    table[i] = -1;
   build(0, n - 1, table, 1);
-  return table;
+  delete [] table;
+  return NULL;
 }
 
 void info(int table[], int n)
@@ -42,12 +44,12 @@ void info(int table[], int n)
 int main(int argc, const char *argv[]) 
 {
   int* table;
-  int data[][2] = {{6, 7}, {7, 7}, {10, 15}};
+  int n;
 
-  for (int i = 0; i < 3; i++) {
-    table = build_table(data[i][0]);
-    info(table, data[i][1]);
-    delete [] table;
-  }
+  n = 7;
+  build_table(n);
+  // info(table, n);
+  // table = build_table(6);
+  // in
   return 0;
 }
