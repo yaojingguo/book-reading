@@ -16,7 +16,6 @@ void build(int l, int u, int table[], int i)
 {
   if (l > u) return;
   int m = (u - l) / 2 + l;
-  printf("l: %d, u: %d, i: %d, m: %d\n", l, u, i, m);
   table[i] = m;
   build(l, m - 1, table, 2*i);
   build(m + 1, u, table, 2*i+1);
