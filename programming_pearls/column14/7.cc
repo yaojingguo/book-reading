@@ -42,11 +42,12 @@ void info(int table[], int n)
 int main(int argc, const char *argv[]) 
 {
   int* table;
-  int n;
+  int data[][2] = {{6, 7}, {7, 7}, {10, 15}};
 
-  for (n = 6; n <= 7; n++) {
-    table = build_table(n);
-    info(table, 7);
+  // for (n = 6; n <= 7; n++) {
+  for (int i = 0; i < 3; i++) {
+    table = build_table(data[i][0]);
+    info(table, data[i][1]);
     delete [] table;
   }
   return 0;
