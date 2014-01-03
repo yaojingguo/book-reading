@@ -19,7 +19,8 @@ typedef struct node {
 nodeptr bin[NHASH];
 
 unsigned int hash(char *p)
-{	unsigned int h = 0;
+{	
+  unsigned int h = 0;
 	for ( ; *p; p++)
 		h = MULT * h + *p;
 	return h % NHASH;
@@ -30,7 +31,8 @@ int nodesleft = 0;
 nodeptr freenode;
 
 nodeptr nmalloc()
-{	if (nodesleft == 0) {
+{	
+  if (nodesleft == 0) {
 		freenode = malloc(NODEGROUP*sizeof(node));
 		nodesleft = NODEGROUP;
 	}
@@ -43,7 +45,8 @@ int charsleft = 0;
 char *freechar;
 
 char *smalloc(int n)
-{	if (charsleft < n) {
+{	
+  if (charsleft < n) {
 		freechar = malloc(n+CHARGROUP);
 		charsleft = n+CHARGROUP;
 	}
@@ -53,7 +56,8 @@ char *smalloc(int n)
 }
 
 void incword(char *s)
-{	nodeptr p;
+{	
+  nodeptr p;
 	int h = hash(s);
 	for (p = bin[h]; p != NULL; p = p->next)
 		if (strcmp(s, p->word) == 0) {
@@ -69,7 +73,8 @@ void incword(char *s)
 }
 
 int main()
-{	int i;
+{	
+  int i;
 	nodeptr p;
 	char buf[100];
 	for (i = 0; i < NHASH; i++)
