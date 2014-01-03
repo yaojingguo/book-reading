@@ -12,7 +12,7 @@ char *word[800000];
 int nword = 0;
 int k = 2;
 
-int wordncmp(char *p, char* q)
+int wordncmp(const char *p, const char* q)
 { 
   int n = k;
   for ( ; *p == *q; p++, q++)
@@ -21,8 +21,10 @@ int wordncmp(char *p, char* q)
   return *p - *q;
 }
 
-int sortcmp(char **p, char **q)
+int sortcmp(const void* a, const void* b)
 { 
+  const char** p = (const char**) a;
+  const char** q = (const char**) b;
   return wordncmp(*p, *q);
 }
 
