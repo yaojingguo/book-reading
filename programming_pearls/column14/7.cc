@@ -45,7 +45,7 @@ int main(int argc, const char *argv[])
   int* table;
   int n;
 
-  for (n = 6; n <= 6; n++) {
+  for (n = 6; n <= 7; n++) {
     table = build_table(n);
     info(table, 7);
     delete [] table;
