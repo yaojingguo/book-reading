@@ -7,9 +7,9 @@
 #include <string.h>
 #include <stdio.h>
 
-int pstrcmp(char **p, char **q)
+int pstrcmp(const void *p, const void *q)
 {   
-  return strcmp(*p, *q); 
+  return strcmp(*((const char**) p), *((const char**) q)); 
 }
 
 int comlen(char *p, char *q)
