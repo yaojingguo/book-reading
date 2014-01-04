@@ -8,7 +8,7 @@
 #include <string.h>
 
 typedef struct node *nodeptr;
-typedef nodeptr* *nodeptrptr;
+typedef nodeptr *nodeptrptr;
 typedef struct node {
   char *word;
   int count;
@@ -74,21 +74,21 @@ void incword(char *s)
   bin[h] = p;
 }
 
+// Appending at the end
 void incword2(char *s)
 { 
-  nodeptr p;
+  nodeptrptr p;
   int h = hash(s);
-  for (p = bin[h]; p != NULL; p = p->next)
-    if (strcmp(s, p->word) == 0) {
-      (p->count)++;
+  for (p = &bin[h]; *p != NULL; p = &((*p)->next))
+    if (strcmp(s, (*p)->word) == 0) {
+      ((*p)->count)++;
       return;
     }
-  p = nmalloc();
-  p->count = 1;
-  p->word = smalloc(strlen(s)+1);
-  strcpy(p->word, s);
-  p->next = bin[h];
-  bin[h] = p;
+  (*p) = nmalloc();
+  (*p)->count = 1;
+  (*p)->word = smalloc(strlen(s)+1);
+  strcpy((*p)->word, s);
+  (*p)->next = NULL;
 }
 
 int main()
@@ -99,7 +99,7 @@ int main()
   for (i = 0; i < NHASH; i++)
     bin[i] = NULL;
   while (scanf("%s", buf) != EOF)
-    incword(buf);
+    incword2(buf);
   for (i = 0; i < NHASH; i++)
     for (p = bin[i]; p != NULL; p = p->next)
       printf("%s %d\n", p->word, p->count);
