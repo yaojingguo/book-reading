@@ -1,8 +1,3 @@
-/* Copyright (C) 1999 Lucent Technologies */
-/* From 'Programming Pearls' by Jon Bentley */
-
-/* wordfreq.c -- list of words in file, with counts */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

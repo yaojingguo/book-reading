@@ -1,9 +1,3 @@
-
-/* Copyright (C) 1999 Lucent Technologies */
-/* From 'Programming Pearls' by Jon Bentley */
-
-/* wordfreq.cpp -- List all words in input file, with counts */
-
 #include <iostream>
 #include <map>
 #include <string>
