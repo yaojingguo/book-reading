@@ -1,0 +1,23 @@
+Inserting at the front
+------------------------
+real	0m0.242s
+user	0m0.232s
+sys	  0m0.000s
+
+NHASH = 1
+----------------
+real	2m17.185s
+user	2m16.929s
+sys	0m0.016s
+
+Appending to the end
+--------------------
+real	0m0.230s
+user	0m0.208s
+sys	  0m0.016s
+
+Moving the most recently found element to the front of the list
+----------------------------------------------------------------
+real	0m0.227s
+user	0m0.220s
+sys  	0m0.004s

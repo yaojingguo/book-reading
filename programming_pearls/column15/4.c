@@ -91,6 +91,30 @@ void incword2(char *s)
   (*p)->next = NULL;
 }
 
+// Moving the most recently found element to the front of the list
+void incword3(char *s)
+{ 
+  nodeptr p;
+  nodeptr q;
+  int h = hash(s);
+  for (p = bin[h], q = NULL; p != NULL; q = p, p = p->next)
+    if (strcmp(s, p->word) == 0) {
+      (p->count)++;
+      if (q != NULL) {
+        q->next = p->next;
+        p->next = bin[h];
+        bin[h] = p;
+      }
+      return;
+    }
+  p = nmalloc();
+  p->count = 1;
+  p->word = smalloc(strlen(s)+1);
+  strcpy(p->word, s);
+  p->next = bin[h];
+  bin[h] = p;
+}
+
 int main()
 { 
   int i;
@@ -99,7 +123,7 @@ int main()
   for (i = 0; i < NHASH; i++)
     bin[i] = NULL;
   while (scanf("%s", buf) != EOF)
-    incword2(buf);
+    incword3(buf);
   for (i = 0; i < NHASH; i++)
     for (p = bin[i]; p != NULL; p = p->next)
       printf("%s %d\n", p->word, p->count);
