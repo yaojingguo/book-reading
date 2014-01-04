@@ -8,6 +8,7 @@
 #include <string.h>
 
 typedef struct node *nodeptr;
+typedef nodeptr* *nodeptrptr;
 typedef struct node {
   char *word;
   int count;
@@ -15,6 +16,7 @@ typedef struct node {
 } node;
 
 #define NHASH 29989
+// #define NHASH 1
 #define MULT 31
 nodeptr bin[NHASH];
 
@@ -56,6 +58,23 @@ char *smalloc(int n)
 }
 
 void incword(char *s)
+{ 
+  nodeptr p;
+  int h = hash(s);
+  for (p = bin[h]; p != NULL; p = p->next)
+    if (strcmp(s, p->word) == 0) {
+      (p->count)++;
+      return;
+    }
+  p = nmalloc();
+  p->count = 1;
+  p->word = smalloc(strlen(s)+1);
+  strcpy(p->word, s);
+  p->next = bin[h];
+  bin[h] = p;
+}
+
+void incword2(char *s)
 { 
   nodeptr p;
   int h = hash(s);
