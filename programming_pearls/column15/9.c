@@ -33,6 +33,7 @@ int copy(char dest[], const char src[])
 char c[MAXN]; 
 struct suffix a[MAXN];
 
+// ./a.out xxxxyyyyy xyaxxxxx
 int main(int argc, const char *argv[]) 
 {
   const char* s1 = argv[1];
@@ -45,8 +46,6 @@ int main(int argc, const char *argv[])
     a[i].p = &c[i];
     a[i].i = i;
   }
-  printf("c: %s\n", c);
-  printf("c: %s\n", c + strlen(c) + 1);
   qsort(a, N, sizeof(struct suffix), suffixcmp);
   int maxlen = -1, maxi;
   for (i = 0; i < N-M; i++) {
