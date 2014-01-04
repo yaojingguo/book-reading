@@ -39,8 +39,8 @@ int main()
       }
     }
 
-  qsort(a, n, sizeof(char *), pstrcmp);
-  for (i = 0; i < n-M; i++)
+  qsort(a, pn, sizeof(char *), pstrcmp);
+  for (i = 0; i < pn-M; i++)
     if (comlen(a[i], a[i+M]) > maxlen) {
       maxlen = comlen(a[i], a[i+M]);
       maxi = i;
