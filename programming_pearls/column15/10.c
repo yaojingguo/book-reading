@@ -20,11 +20,11 @@ int comlen(char *p, char *q)
 #define MAXN 5000000
 char c[MAXN], *a[MAXN];
 
+// ./a.out < people.txt 
 int main()
 {   
   int i, ch, n = 0, pn = 0, maxi, maxlen = -1;
   while ((ch = getchar()) != EOF) {
-    // a[n] = &c[n];
     c[n++] = ch;
   }
   c[n] = 0;
@@ -38,7 +38,8 @@ int main()
         seenboundary = false;
       }
     }
-
+  // Only one word in the input text
+  if (pn == 1) return 0;
   qsort(a, pn, sizeof(char *), pstrcmp);
   for (i = 0; i < pn-M; i++)
     if (comlen(a[i], a[i+M]) > maxlen) {
