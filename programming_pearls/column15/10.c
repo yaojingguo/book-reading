@@ -20,7 +20,9 @@ int comlen(char *p, char *q)
 #define MAXN 5000000
 char c[MAXN], *a[MAXN];
 
-// ./a.out < people.txt 
+// ./a.out < people.txt
+// Only substrings beginning at word boundaries are taken into account. For 
+// "aaaaaaa aa bb", the result is aa not aaaaaa.
 int main()
 {   
   int i, ch, n = 0, pn = 0, maxi, maxlen = -1;
