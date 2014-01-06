@@ -25,14 +25,16 @@ int main(int argc, const char *argv[])
     c[n++] = ch;
   c[n] = 0;
   i = randint(0, n - 1);
-  putchar(c[i]);
+  ch = c[i];
+  putchar(ch);
   for (max = 100; max > 0; max--) {
     i = randint(0, n - 1); 
-    for (j = i; c[j] != c[i]; j++) 
+    for (j = i; c[j] != ch; j++) 
       ;
     if (j >= n - 1)
       break;
     i = j + 1;
+    ch = c[i];
     putchar(c[i]);
   }
   putchar('\n');
