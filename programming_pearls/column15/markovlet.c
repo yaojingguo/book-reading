@@ -14,7 +14,7 @@ char x[5000000];
 
 int main()
 { 
-  int c, i, eqsofar, max, n = 0, k = 5;
+  int c, i, eqsofar, max, n = 0, k = 1;
   char *p, *nextp, *q;
   while ((c = getchar()) != EOF)
     x[n++] = c;
